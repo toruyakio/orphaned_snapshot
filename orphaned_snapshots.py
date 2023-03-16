@@ -46,6 +46,7 @@ for snapshot in snapshots:
    snapshot_id = snapshot["SnapshotId"]
    volume_id = snapshot["VolumeId"]
    taken_on = snapshot["StartTime"].date()
+   tier = snapshot["StorageTier"]
    description = snapshot["Description"]
    ids=[volume_id]
    try :
@@ -57,7 +58,9 @@ for snapshot in snapshots:
          restored_date = volume["CreateTime"].date()
       guidance = vid + " was recovered from " + from_sid + " on " + str(restored_date) 
    except:
-      guidance = "Missing parent volume, please check with your admin if this is cost efficient."
+      guidance = "Missing parent volume, but is on " + tier + " tier."
+      if tier == 'standard':
+         guidance = "Missing parent volume, please check with your admin if this is cost efficient or candidate for archiving."
    finally:
-      print('{} {} is snapshot for {} taken on {}. {}, {}'.format(count, snapshot_id, volume_id, taken_on, guidance, description))
+      print('{} {} is snapshot for {} taken on {} {} tier. {}, {}'.format(count, snapshot_id, volume_id, taken_on, tier, guidance, description))
       count += 1
