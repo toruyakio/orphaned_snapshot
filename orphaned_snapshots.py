@@ -12,17 +12,18 @@ ec2 = boto3.client('ec2')
 snapshotids=[
    'snap-07722fa9e9974c95f',
    'snap-02e2fcee42057f27f',
-   'snap-05048b5bd1464a398', 
    'snap-012177594985fb230',
    'snap-054fd31234aaa2107',
    'snap-744b7efb',
-   'snap-0405eba2e66b8f59d'
+   'snap-0405eba2e66b8f59d',
+   'snap-0c900bd54ccc61049',
+   'snap-0869a66710dd5fae2'
    ]
 
+# 'self' indicates your AWS Account. 
 awsids=[
    'self'
 ]
-
 
 # Example in case that you would like to work with AMI related Snapshot IDs.
 
